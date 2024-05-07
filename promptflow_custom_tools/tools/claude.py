@@ -24,8 +24,8 @@ def generate(
     prompt: PromptTemplate,
     model: str = "claude-3-opus-20240229",
     temperature: float  = 1,
-    top_p: float = 1.0,
-    max_tokens: int = 1024,
+    top_p: float = None,
+    max_tokens: int = 4096,
     **kwargs
 ) -> str:
     
@@ -49,14 +49,19 @@ def generate(
         else:
             updatedMessages.append(i)
 
-    message = client.messages.create(
-        model=model,
-        max_tokens=max_tokens,
-        temperature=temperature,
-        top_p=top_p,
-        system=system,
-        messages=updatedMessages
-    )
+
+    arguments = {
+        "model":model,
+        "max_tokens":max_tokens,
+        "temperature":temperature,
+        "system":system,
+        "messages":updatedMessages
+    }      
+
+    if top_p != None:
+        arguments['top_p'] = top_p 
+
+    message = client.messages.create(**arguments)
 
     response = ''
     for txt in message.content:

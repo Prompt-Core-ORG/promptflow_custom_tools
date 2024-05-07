@@ -11,6 +11,10 @@ promptflow_custom_tools.tools.claude.generate:
     model:
       type:
         - string
+      enum:
+        - claude-3-opus-20240229
+        - claude-3-sonnet-20240229
+        - claude-3-haiku-20240307
       default: claude-3-opus-20240229
     temperature:
       type:
@@ -19,10 +23,11 @@ promptflow_custom_tools.tools.claude.generate:
     top_p:
       type:
         - double
-      default: '1.0'
+      default: ""
     max_tokens:
       type:
         - int
+      default: '4096'
   description: Tool for interacting with Claude LLM
   module: promptflow_custom_tools.tools.claude
   function: generate

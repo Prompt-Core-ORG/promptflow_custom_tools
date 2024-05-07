@@ -4,7 +4,7 @@ PACKAGE_NAME = "promptflow_custom_tools"
 
 setup(
     name=PACKAGE_NAME,
-    version="0.0.5",
+    version="0.0.9",
     description="This is my tools package",
     packages=find_packages(),
     entry_points={
